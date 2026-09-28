@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Gasp! Gaming — autorizzazione</title>
+<body style="font:16px system-ui;padding:2rem;max-width:40rem">
+<h1>Autorizzazione in corso…</h1>
+<p id="stato">Ti sto rimandando all'applicazione.</p>
+<p><a id="manuale" href="#">Se non succede niente, clicca qui.</a></p>
+<script>
+  // Rimbalza il codice al comando in ascolto sulla macchina. La pagina
+  // non lo legge e non lo manda da nessun'altra parte: lo passa e basta.
+  var q = location.search || "";
+  var locale = "http://127.0.0.1:8765/ritorno" + q;
+  document.getElementById("manuale").href = locale;
+  if (q.indexOf("code=") > -1 || q.indexOf("error=") > -1) {
+    location.replace(locale);
+  } else {
+    document.getElementById("stato").textContent =
+      "Questa pagina serve solo durante l'autorizzazione.";
+  }
+</script>
+</body>
